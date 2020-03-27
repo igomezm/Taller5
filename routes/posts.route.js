@@ -6,7 +6,7 @@ router.get('/', postController.findAllPosts);
 /**
  * GET Route to find post by id
  */
-router.get('/:idUser', postController.findOnePost);
+router.get('/:idPost', postController.findOnePost);
 /**
  * POST Route to create post
  */
@@ -14,11 +14,12 @@ router.post ('/',postController.createPost);
 /**
  * PUT Route to update an user by id
  */
-router.put ('/:idUser',postController.updatePost);
+router.put ('/:idPost',postController.updatePost);
+
 /**
  * DELETE Route to delete an user by username
  */
-router.delete ('/:username',postController.deleteAllPosts);
+router.delete ('/:idPost',postController.deletePost);
 /**
  * DELETE Route to delete all users
  */

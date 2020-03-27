@@ -13,7 +13,7 @@ function createPost (req, res) {
     }
 
     // CREATING THE OBJECT TO PERSIST
-    const newUserObject = {
+    const newPostObject = {
         idPost: req.body.post,
         creation_date: req.body.creation_date
     }
@@ -68,11 +68,11 @@ async function findOnePost (req, res){
         //Execute query
         const user = await dbManager.Post.findOne({
             where: {
-                idUser: idPost
+                idPost: idPost
             }
         });
         //Send response
-        res.json(post);
+        res.json(user);
 
     } catch (e) {
         // Print error on console
@@ -88,57 +88,39 @@ async function findOnePost (req, res){
 
  * Update user
  */
-async function updatePost(req, res) {
+async function updatePost (req, res){
+    if (!req.body) {
+        res.status(400).send({
+            message: "Request body is empty!!!!"
+        });
+        return;
+    }
 
-    updatepostObjet,{
-        where{idpost:req.params.idpost}}
-   ).then(
-       data =>{
-           console.log(data);
-           res.send(data);
-       }
-)catch (e) {
-    // Print error on console
-    console.log(e);
-    // Send error message as a response
-    res.status(500).send({
-        message: "Some error occurred"
-    });
+    // CREATING THE OBJECT TO PERSIST
+    const updatePostObject = {
+        idPost: req.body.post,
+        creation_date: req.body.creation_date
+    }
+
+    // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE
+    dbManager.Post.updatePost(updatePostObject,
+        {where : {idPost : req.params.post}})
+        .then (
+            data => {
+                console.log(data);
+                res.send (data);
+            }
+        ).catch (
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response
+            res.status(500).send({
+                message: "Some error occurred"
+            });
+        }
+    );
 }
-};
-
-    try {
-        const fecha = new Date(req.params.creation_date);
-
-
-        // CREATING THE OBJECT TO PERSIST
-        const updateUserObject = {
-            username: req.body.username,
-            creation_date: req.body.creation_date
-        }
-
-        // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE
-        try {
-            const fecha = new Date(req.params.creation_date);
-            dbManager.User.updatePost(updateUserObject,
-                {where: {idUser: req.params.idUser}})
-                .then(
-                    data => {
-                        console.log(data);
-                        res.send(data);
-                    }
-                ).catch(
-                e => {
-                    // Print error on console
-                    console.log(e);
-                    // Send error message as a response
-                    res.status(500).send({
-                        message: "Some error occurred"
-                    });
-                }
-            );
-        }
-
         /**
          * Delete an existen user by username
          * @param {*} req
@@ -164,7 +146,7 @@ async function updatePost(req, res) {
             );
         }
 
-        exports.createPost = createPost;
+        exports.createPost= createPost;
         exports.findAllPosts = findAllPosts;
         exports.findOnePost = findOnePost;
         exports.updatePost = updatePost;

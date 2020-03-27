@@ -130,7 +130,8 @@ async function updateUser (req, res){
  */
 function deleteUserByUsername (req, res){
     dbManager.User.destroy(
-        {where : {username : req.params.sername}}
+        {where : {username : req.params.username}}
+
     ).then (
         data => {
             console.log(data);
