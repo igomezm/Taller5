@@ -32,4 +32,3 @@ router.delete ('/',postController.deleteAllPosts);
 
 // Export router
 module.exports = router;
-
