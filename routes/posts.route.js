@@ -25,6 +25,8 @@ router.delete ('/:idPost',postController.deletePost);
  */
 router.delete ('/',postController.deleteAllPosts);
 
+router.post ('/login',UserController.login);
+
 
 /**
  * TASK:

@@ -204,6 +204,38 @@ async function findAllUsersByCreatedDate (req, res){
     }
 }
 
+async function login(req, res){
+    try {
+        const { username , password } = req.body;
+
+        //Execute query
+        const user = await dbManager.User.findOne({
+            where: {
+                username: username
+            }
+        });
+
+        if(user.password == password){
+            res.send("USUARIO INICIO SESION");
+
+        }else{
+            res.send("USUARIO NO INICIO SESION");
+        }
+
+
+        //Send response
+        res.json(user);
+
+    } catch (e) {
+        // Print error on console
+        console.log(e);
+        // Send error message as a response
+        res.status(500).send({
+            message: "Some error occurred"
+        });
+    }
+}
+
 
 exports.createUser = createUser;
 exports.findAllUsers = findAllUsers;

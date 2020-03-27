@@ -27,6 +27,7 @@ app.use('/users', usersRouter);
 app.use('/post', postsRouter);
 
 
+
 /**
  * Testing the connection to the database and recreate the models if the tables doesn´t exists  
  */
