@@ -183,11 +183,10 @@ function deleteAllUsers (req, res){
 async function findAllUsersByCreatedDate (req, res){
 
     try {
-        const fecha = new Date(req.params.creation_date);
-
+        const fecha= new Date(req.params.creation_date);
         //Execute query
         const users = await dbManager.User.findAll (
-            {where : {create_date : fecha}}
+            {where : {create_date :fecha}}
         );
 
         //Send response

@@ -1,9 +1,6 @@
 const dbManager = require ('../database.config/database.manager');
 
 function createPost (req, res) {
-
-
-
     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body){
         res.status(400).send({
@@ -144,12 +141,38 @@ async function updatePost (req, res){
                     });
                 }
             );
+            
         }
+function deleteAllPosts (req, res){
 
+    dbManager.Post.destroy(
+
+        {where : {}}
+    ).then (
+        data => {
+            console.log(data);
+            res.send (data);
+        }
+    ).catch (
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response
+            res.status(500).send({
+                message: "Some error occurred"
+            });
+        }
+    );
+
+}
+        
+        
+        
+        
+        
         exports.createPost= createPost;
         exports.findAllPosts = findAllPosts;
         exports.findOnePost = findOnePost;
         exports.updatePost = updatePost;
         exports.deletePost = deletePost;
         exports.deleteAllPosts = deleteAllPosts;
-        exports.findAllPostsByCreatedDate = findAllPostByCreatedDate;

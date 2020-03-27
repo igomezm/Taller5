@@ -15,8 +15,8 @@ router.post ('/',postController.createPost);
  * PUT Route to update an user by id
  */
 router.put ('/:idPost',postController.updatePost);
-
 /**
+
  * DELETE Route to delete an user by username
  */
 router.delete ('/:idPost',postController.deletePost);
