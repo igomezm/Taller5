@@ -17,6 +17,7 @@ function createUser (req, res) {
     // CREATING THE OBJECT TO PERSIST
     const newUserObject = {
         username: req.body.username,
+        password: req.body.password,
         creation_date: req.body.creation_date
     }
 
