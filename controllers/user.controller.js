@@ -204,7 +204,8 @@ async function findAllUsersByCreatedDate (req, res){
     }
 }
 
-async function login(req, res){
+async function login (req, res){
+
     try {
         const { username , password } = req.body;
 
@@ -236,7 +237,7 @@ async function login(req, res){
     }
 }
 
-
+exports.login=login;
 exports.createUser = createUser;
 exports.findAllUsers = findAllUsers;
 exports.findOneUser = findOneUser;
