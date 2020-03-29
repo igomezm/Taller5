@@ -165,10 +165,7 @@ function deleteAllPosts (req, res){
     );
 
 }
-        
-        
-        
-        
+
         
         exports.createPost= createPost;
         exports.findAllPosts = findAllPosts;
