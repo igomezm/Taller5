@@ -24,7 +24,7 @@ function createUser (req, res) {
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE
     dbManager.User.create(newUserObject).then (
         data => {
-            res.send (data);
+            res.send (true);
         }
     ).catch (
         e => {
