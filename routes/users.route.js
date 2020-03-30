@@ -13,6 +13,7 @@ router.get('/:idUser', userController.findOneUser);
  * POST Route to create user
  */
 router.post ('/',userController.createUser);
+
 /**
  * PUT Route to update an user by id
  */

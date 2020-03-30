@@ -4,7 +4,7 @@ const dbManager = require ('../database.config/database.manager');
  * Creation of an user
  * @param {*} userObject JSON Object with User information
  */
-function createUser (req, res) {
+async function createUser  (req, res) {
 
     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
@@ -24,7 +24,7 @@ function createUser (req, res) {
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE
     dbManager.User.create(newUserObject).then (
         data => {
-            res.send (true);
+            res.send (data);
         }
     ).catch (
         e => {
@@ -37,7 +37,6 @@ function createUser (req, res) {
         }
     );
 }
-
 /**
  * GEt all users
  */
@@ -218,15 +217,11 @@ async function login (req, res){
         });
 
         if(user.password == password){
-            res.send("USUARIO INICIO SESION");
+            res.send(true);
 
         }else{
-            res.send("USUARIO NO INICIO SESION");
+            res.send(true);
         }
-
-
-        //Send response
-        res.json(user);
 
     } catch (e) {
         // Print error on console
