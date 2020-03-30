@@ -128,9 +128,9 @@ async function updateUser (req, res){
  * @param {*} req
  * @param {*} res
  */
-function deleteUserByUsername (req, res){
+async function deleteUserByUsername (req, res){
     dbManager.User.destroy(
-        {where : {idPost : req.params.idPost}}
+        {where : {username : req.params.username}}
 
 
     ).then (
@@ -155,7 +155,7 @@ function deleteUserByUsername (req, res){
  * @param {*} req
  * @param {*} res
  */
-function deleteAllUsers (req, res){
+async function deleteAllUsers (req, res){
     dbManager.User.destroy(
         {where : {}}
     ).then (
